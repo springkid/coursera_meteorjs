@@ -6,7 +6,7 @@
 // helper function that returns all available websites
 Template.website_list.helpers({
 	websites:function(){
-		return Websites.find({});
+		return Websites.find({}, {sort: {"totalVotes": -1}});
 	}
 });
 
@@ -22,6 +22,7 @@ Template.website_item.events({
 		var website_id = this._id;
 		console.log("Up voting website with id "+website_id);
 		// put the code in here to add a vote to a website!
+		Websites.update(website_id, {$inc: {totalVotes: 1}});
 
 		return false;// prevent the button from reloading the page
 	}, 
@@ -33,6 +34,7 @@ Template.website_item.events({
 		console.log("Down voting website with id "+website_id);
 
 		// put the code in here to remove a vote from a website!
+		Websites.update(website_id, {$inc: {totalVotes: -1}});
 
 		return false;// prevent the button from reloading the page
 	}

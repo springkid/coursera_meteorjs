@@ -14,6 +14,9 @@ Websites.allow({
 		else {// user not logged in
 			return false;
 		}		
+	},
+	update: function(userId, doc){
+		return true;
 	}
 });
 

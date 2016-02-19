@@ -69,7 +69,7 @@
 <template name="website_list">
 	<ol>
 	{{#each websites}}
-	{{>website_item}}
+		{{>website_item}}
 	{{/each}}
 	</ol>
 </template>
@@ -87,6 +87,7 @@
 	<a href="#" class="btn btn-default js-downvote">
 		<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
 	</a>
+	Total votes: {{ totalVotes }}
 	<!-- you will be putting your up and down vote buttons in here! -->
 </li>
 </template>
