@@ -3,6 +3,18 @@
 </head>
 
 <body>
+
+</body>
+
+<template name="ApplicationLayout">
+	{{> yield "navbar" }}
+
+	{{> yield "formContent" }}
+<hr>
+	{{> yield "main"}}
+</template>
+
+<template name="navbar">
 	<!-- navbar  - you will be putting the login functions here -->
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
@@ -27,21 +39,10 @@
 	    </div><!-- /.navbar-collapse -->
   	  </div><!-- /.container-fluid -->
 	</nav>
-
-	<div class="container">
-		<div class="row">
-			{{> website_form}}
-		</div>
-
-		<div class="row">
-			{{> website_list}}
-		</div>
-		
-	</div>
-</body>
-
+</template>
 
 <template name="website_form">
+  <div class="container">
 	<a class="btn btn-default js-toggle-website-form" href="#">
   		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 	</a>
@@ -63,33 +64,57 @@
 		  <button type="submit" class="btn btn-default">Submit</button>
 		</form>
 	</div>
+  </div>
 </template>
 
 <!-- template that displays several website items -->
 <template name="website_list">
-	<ol>
+
 	{{#each websites}}
 		{{>website_item}}
 	{{/each}}
-	</ol>
+
 </template>
 
 <!-- template that displays individual website entries -->
 <template name="website_item">
-<li>
-	<a href="{{url}}">{{title}}</a>
-	<p>
-		{{description}}
-	</p>
-	<p>Total votes: {{ totalVotes }}</p>
-	<p>Site added: {{ createdOn }}</p>
-	<a href="#" class="btn btn-default js-upvote">
-		<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
-	</a>
-	<a href="#" class="btn btn-default js-downvote">
-		<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
-	</a>
-	
-	<!-- you will be putting your up and down vote buttons in here! -->
-</li>
+	<div class="container">
+	    <div class="row">
+	        <div class="col-md-4">
+	            <div class="panel panel-info">
+	                <div class="panel-heading">
+	                    <h3 class="panel-title"><a href="/website/{{_id}}">{{ title }}</a></h3>
+	                </div>
+	                <ul class="list-group">
+	                    <p>{{ description }}</p>
+	                    <p>Total Votes: {{ totalVotes }}</p>
+	                    <p>Site added on: {{ createdOn }}</p>
+	                    <p>
+		                	<!-- you will be putting your up and down vote buttons in here! -->
+			                <a href="#" class="btn btn-default js-upvote">
+								<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+							</a>
+							<a href="#" class="btn btn-default js-downvote">
+								<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+							</a>
+	                	</p>
+	                </ul>
+	            </div>
+	        </div>
+	    </div>
+	</div>
 </template>
+
+<template name="web_details">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<h2>{{ title }}</h2>
+				<p>{{ description }}</p>
+				<p><b>Total votes:</b> {{ totalVotes }}</p>
+				<p><b>Site added on:</b> {{ createdOn }}</p>
+			</div>
+		</div>
+	</div>
+</template>
+
