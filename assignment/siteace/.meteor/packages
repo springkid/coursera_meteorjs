@@ -22,3 +22,5 @@ accounts-password
 iron:router
 autopublish
 arkham:comments-ui
+http
+ejson

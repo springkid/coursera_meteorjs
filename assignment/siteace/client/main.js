@@ -98,10 +98,14 @@ Template.website_form.events({
 		}
 		else {
 			console.log("Not logged in");
+			window.alert("Error: User not logged in.")
 
 		}
 	
 		return false;// stop the form submit from reloading the page
 
+	},
+	"click .js-fetch-info-website":function() {
+		console.log($('#url').val);
 	}
 });
